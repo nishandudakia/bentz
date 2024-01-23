@@ -1,14 +1,17 @@
 function selectCountries(shortlist, all) {
     while (shortlist.length < 40) {
         const selected = all[Math.floor(Math.random() * all.length)];
-        const country = {
-            flag: selected["flags"]["svg"],
-            name: selected["name"]["common"]
-        }
 
-        if (!shortlist.includes(country)) {
-            shortlist.push(country);
-        }
+        if (selected["flags"]["svg"] && selected["name"]["common"]){
+            const country = {
+                flag: selected["flags"]["svg"],
+                name: selected["name"]["common"]
+            }
+    
+            if (!shortlist.includes(country)) {
+                shortlist.push(country);
+            }
+        }   
     }
     
     return shortlist;
