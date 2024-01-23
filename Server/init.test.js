@@ -1,11 +1,32 @@
 const each = require("jest-each").default;
-const {selectCountries, stripped, split} = require("./init.js")
+const {selectCountries, split} = require("./init.js")
+const testInputArray = require("./testInputArray.json")
 
-describe("stripped", () => {
+describe("selectCountries", () => {
 
     it("Is a function", () => {
-        expect(stripped).toBeDefined();
-        expect(stripped instanceof Function).toEqual(true);
+        expect(selectCountries).toBeDefined();
+        expect(selectCountries instanceof Function).toEqual(true);
+    })
+
+    // it("Returns an empty object when passed an empty array", () => {
+    //     const result = selectCountries([{"flags":{"png":"","svg":"","alt":""},"name":{"common":"","official":"","nativeName":{"cat":{"official":"","common":""}}}}])
+    //     expect(result instanceof Object).toEqual(true);
+    //     expect(Object.keys(result).length).toBe(0);
+    // })
+
+    it('should return an array with 40 objects', () => {    
+        // Assert
+        expect(selectCountries([],testInputArray)).toHaveLength(40);
+      });
+
+})
+
+describe("split", () => {
+
+    it("Is a function", () => {
+        expect(split).toBeDefined();
+        expect(split instanceof Function).toEqual(true);
     })
 
     // it("Returns an empty object when passed an empty array", () => {
