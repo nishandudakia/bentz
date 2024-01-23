@@ -3,81 +3,43 @@ let state = {
   score: "",
   currentQuestion: 0,
   correctAnswer: null,
+  countries: null,
 };
 
 // destructed object
-let { currentQuestion, correctAnswer, score } = state;
+let { currentQuestion, correctAnswer, score, countries } = state;
 
-const testObj = [
-  [
-    { flag: "https://flagcdn.com/fr.svg", name: "France" },
-    { flag: "https://flagcdn.com/de.svg", name: "Germany" },
-    { flag: "https://flagcdn.com/es.svg", name: "Spain" },
-    { flag: "https://flagcdn.com/it.svg", name: "Italy" },
-  ],
-  [
-    { flag: "https://flagcdn.com/us.svg", name: "United States" },
-    { flag: "https://flagcdn.com/ca.svg", name: "Canada" },
-    { flag: "https://flagcdn.com/gb.svg", name: "United Kingdom" },
-    { flag: "https://flagcdn.com/au.svg", name: "Australia" },
-  ],
-  [
-    { flag: "https://flagcdn.com/jp.svg", name: "Japan" },
-    { flag: "https://flagcdn.com/cn.svg", name: "China" },
-    { flag: "https://flagcdn.com/in.svg", name: "India" },
-    { flag: "https://flagcdn.com/br.svg", name: "Brazil" },
-  ],
-  [
-    { flag: "https://flagcdn.com/ru.svg", name: "Russia" },
-    { flag: "https://flagcdn.com/za.svg", name: "South Africa" },
-    { flag: "https://flagcdn.com/ar.svg", name: "Argentina" },
-    { flag: "https://flagcdn.com/mx.svg", name: "Mexico" },
-  ],
-  [
-    { flag: "https://flagcdn.com/nl.svg", name: "Netherlands" },
-    { flag: "https://flagcdn.com/se.svg", name: "Sweden" },
-    { flag: "https://flagcdn.com/no.svg", name: "Norway" },
-    { flag: "https://flagcdn.com/dk.svg", name: "Denmark" },
-  ],
-  [
-    { flag: "https://flagcdn.com/kr.svg", name: "South Korea" },
-    { flag: "https://flagcdn.com/th.svg", name: "Thailand" },
-    { flag: "https://flagcdn.com/id.svg", name: "Indonesia" },
-    { flag: "https://flagcdn.com/vn.svg", name: "Vietnam" },
-  ],
-  [
-    { flag: "https://flagcdn.com/gr.svg", name: "Greece" },
-    { flag: "https://flagcdn.com/eg.svg", name: "Egypt" },
-    { flag: "https://flagcdn.com/ke.svg", name: "Kenya" },
-    { flag: "https://flagcdn.com/za.svg", name: "South Africa" },
-  ],
-  [
-    { flag: "https://flagcdn.com/tr.svg", name: "Turkey" },
-    { flag: "https://flagcdn.com/sa.svg", name: "Saudi Arabia" },
-    { flag: "https://flagcdn.com/ae.svg", name: "United Arab Emirates" },
-    { flag: "https://flagcdn.com/qa.svg", name: "Qatar" },
-  ],
-  [
-    { flag: "https://flagcdn.com/pl.svg", name: "Poland" },
-    { flag: "https://flagcdn.com/hu.svg", name: "Hungary" },
-    { flag: "https://flagcdn.com/cz.svg", name: "Czech Republic" },
-    { flag: "https://flagcdn.com/sk.svg", name: "Slovakia" },
-  ],
-  [
-    { flag: "https://flagcdn.com/fi.svg", name: "Finland" },
-    { flag: "https://flagcdn.com/no.svg", name: "Norway" },
-    { flag: "https://flagcdn.com/dk.svg", name: "Denmark" },
-    { flag: "https://flagcdn.com/is.svg", name: "Iceland" },
-  ],
-];
+// requests
+function getCountries() {
+  const apiUrl = "http://localhost:8080/gamedata";
 
+  // Using the fetch function to make a GET request
+  fetch(apiUrl)
+    .then((response) => {
+      // Check if the request was successful (status code 200 OK)
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Parse the response as JSON
+      return response.json();
+    })
+    .then((data) => {
+      // Handle the data
+      countries = data;
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error("Fetch error:", error);
+    });
+}
 // selectors
 const wrapper = document.querySelector(".wrapper");
 
 async function startGame() {
-  const currentQuestionData = testObj[currentQuestion];
+  const currentQuestionData = countries[currentQuestion];
 
-  const randomCountry = pickRandomCountry(testObj[currentQuestion]);
+  const randomCountry = pickRandomCountry(countries[currentQuestion]);
 
   correctAnswer = randomCountry.name;
 
@@ -85,7 +47,7 @@ async function startGame() {
   <nav class="container d-flex justify-content-between align-items-center mt-3">
     <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
     <p class="custom-primary fs-5 mt-3">${currentQuestion + 1} of ${
-    testObj.length
+    countries.length
   }</p>
   </nav>
 
@@ -184,4 +146,5 @@ function checkCorrectAnswer(button, buttons) {
 }
 
 const startButton = document.querySelector(".start");
+document.addEventListener("DOMContentLoaded", getCountries);
 startButton.addEventListener("click", startGame);
