@@ -3,7 +3,6 @@ let state = {
   score: "",
   currentQuestion: 0,
   correctAnswer: null,
-  isGameFinished: false,
 };
 
 // destructed object
@@ -134,7 +133,6 @@ function checkCorrectAnswer(button, buttons) {
   }
 
   async function endGame() {
-  
     wrapper.innerHTML = `
     <nav class="container d-flex justify-content-between align-items-center mt-3">
       <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
@@ -144,7 +142,7 @@ function checkCorrectAnswer(button, buttons) {
 
     <img src= 'assets/Star.png' style="width: 625px;" />
 
-    <div class=" d-flex flex-row justify-content-evenly mt-4 " style="width: 100%;">
+    <div class=" d-flex flex-row justify-content-evenly mt-4 w-100">
     <div class="col-4">
       <button class="custom-btn">Play Again</button>
     </div>
@@ -157,12 +155,14 @@ function checkCorrectAnswer(button, buttons) {
 
 
     </section>`;
-  
+
     const buttons = document.querySelectorAll(".custom-btn");
-  
+
     //   add event listener to all buttons
     buttons.forEach((button) => {
-      button.addEventListener("click", () => checkCorrectAnswer(button, buttons));
+      button.addEventListener("click", () =>
+        checkCorrectAnswer(button, buttons)
+      );
     });
   }
 
@@ -174,15 +174,12 @@ function checkCorrectAnswer(button, buttons) {
 
   //   go to next question after 2 seconds
   setTimeout(() => {
-
-    if (currentQuestion < 9){
+    if (currentQuestion < 9) {
       currentQuestion++;
-      endGame(); // call startGame to display the next question
+      startGame(); // call startGame to display the next question
+    } else {
+      endGame();
     }
-    else{
-      endGame()
-    }
-
   }, nextQuestionDelay);
 }
 
