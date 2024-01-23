@@ -21,6 +21,7 @@ router.get("/gamedata", async ctx => {
         ctx.body = JSON.stringify(split(shortlist));
     } catch (error) {
         console.error(error);
+        ctx.status = 500;
     }
 });
 
