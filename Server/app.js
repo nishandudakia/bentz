@@ -22,7 +22,7 @@ router.get("/gamedata", async ctx => {
     } catch (error) {
         console.error(error);
     }
-})
+});
 
 app.use(router.routes());
 

@@ -1,20 +1,17 @@
 function selectCountries(shortlist, all) {
     while (shortlist.length < 40) {
-        const selected = stripped(all[Math.floor(Math.random() * all.length)]);
+        const selected = all[Math.floor(Math.random() * all.length)];
+        const country = {
+            flag: selected["flags"]["svg"],
+            name: selected["name"]["common"]
+        }
 
-        if (!shortlist.includes(selected)) {
-            shortlist.push(selected);
+        if (!shortlist.includes(country)) {
+            shortlist.push(country);
         }
     }
     
     return shortlist;
-}
-
-function stripped(country) {
-    return {
-        flag: country["flags"]["svg"],
-        name: country["name"]["common"]
-    }
 }
 
 function split(shortlist) {
@@ -28,4 +25,4 @@ function split(shortlist) {
     return split;
 }
 
-module.exports = { selectCountries, stripped, split }
+module.exports = { selectCountries, split };
