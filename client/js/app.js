@@ -133,6 +133,9 @@ function checkCorrectAnswer(button, buttons) {
     });
   }
 
+  async function endGame(){
+  }
+
   //   clear state
   correctAnswer = null;
 
@@ -141,8 +144,15 @@ function checkCorrectAnswer(button, buttons) {
 
   //   go to next question after 2 seconds
   setTimeout(() => {
-    currentQuestion++;
-    startGame(); // call startGame to display the next question
+
+    if (isGameFinished == true){
+      endGame()
+    }
+    else{
+      currentQuestion++;
+      startGame(); // call startGame to display the next question
+    }
+
   }, nextQuestionDelay);
 }
 
