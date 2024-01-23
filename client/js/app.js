@@ -1,9 +1,13 @@
 // state
-const state = {
+let state = {
   score: "",
   currentQuestion: 0,
   correctAnswer: null,
+  isGameFinished: false,
 };
+
+// destructed object
+let { currentQuestion, correctAnswer, score } = state;
 
 const testObj = [
   [
@@ -72,43 +76,33 @@ const testObj = [
 const wrapper = document.querySelector(".wrapper");
 
 async function startGame() {
-  const { currentQuestion } = state;
-
   const currentQuestionData = testObj[currentQuestion];
 
   const randomCountry = pickRandomCountry(testObj[currentQuestion]);
 
-  state.correctAnswer = randomCountry.name;
+  correctAnswer = randomCountry.name;
 
-  wrapper.innerHTML = `<nav
-        class="container d-flex justify-content-between align-items-center mt-3"
-      >
-        <img
-          src="./assets/logo.png"
-          alt="logo of a flag with text saying name that flag"
-          class="logo"
-        />
-        <p class="custom-primary fs-5 mt-3">${currentQuestion + 1} of ${
+  wrapper.innerHTML = `
+  <nav class="container d-flex justify-content-between align-items-center mt-3">
+    <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
+    <p class="custom-primary fs-5 mt-3">${currentQuestion + 1} of ${
     testObj.length
   }</p>
-      </nav>
-      
-      <section
-        class="mt-5 container d-flex flex-column justify-content-center align-items-center"
-      >
-        <img src=${randomCountry.flag} class="rounded custom-img" />
-        <div class="mt-5 row">
-        ${currentQuestionData
-          .map(
-            (data) => `
-              <div class="col-md-6">
-                <button class="custom-btn">${data.name}</button>
-              </div>`
-          )
-          .join("")}
+  </nav>
 
-        </div>
-      </section>`;
+  <section class="mt-5 container d-flex flex-column justify-content-center align-items-center">
+    <img src=${randomCountry.flag} class="rounded custom-img" />
+    <div class="mt-5 row">
+      ${currentQuestionData
+        .map(
+          (data) => `
+        <div class="col-md-6">
+          <button class="custom-btn">${data.name}</button>
+        </div>`
+        )
+        .join("")}
+    </div>
+  </section>`;
 
   const buttons = document.querySelectorAll(".custom-btn");
 
@@ -126,26 +120,30 @@ function pickRandomCountry(countries) {
 
 // function to check if button clicked is the correct answer
 function checkCorrectAnswer(button, buttons) {
-  if (button.textContent === state.correctAnswer) {
+  if (button.textContent === correctAnswer) {
     button.classList.add("custom-bg-green");
-    state.score++;
+    score++;
   } else {
     button.classList.add("custom-bg-red");
+    // show current answer
     buttons.forEach((btn) => {
-      if (btn.textContent === state.correctAnswer) {
+      if (btn.textContent === correctAnswer) {
         btn.classList.add("custom-bg-green");
       }
     });
   }
 
   //   clear state
-  state.correctAnswer = null;
+  correctAnswer = null;
+
+  //   question delay
+  const nextQuestionDelay = 1000;
 
   //   go to next question after 2 seconds
   setTimeout(() => {
-    state.currentQuestion++;
+    currentQuestion++;
     startGame(); // call startGame to display the next question
-  }, 1000);
+  }, nextQuestionDelay);
 }
 
 startGame();
