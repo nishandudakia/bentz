@@ -3,10 +3,14 @@ let state = {
   score: "",
   currentQuestion: 0,
   correctAnswer: null,
+  isGamePlaying: false,
 };
 
 // destructed object
 let { currentQuestion, correctAnswer, score } = state;
+
+// selectors
+const wrapper = document.querySelector(".wrapper");
 
 const testObj = [
   [
@@ -71,8 +75,36 @@ const testObj = [
   ],
 ];
 
-// selectors
-const wrapper = document.querySelector(".wrapper");
+function getCountries() {
+  // make request
+
+  // load welcome page
+  wrapper.innerHTML = `<nav
+  class="container pt-3"
+>
+    <img
+      src="./assets/logo.png"
+      alt="logo of a flag with text saying name that flag"
+      class="logo logo-welcome mt-3"
+    />
+    </nav>
+    <div class="container d-flex justify-content-center">
+      <div
+      class="background-image-container mt-5 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="text-box d-flex flex-column justify-content-center pt-5 pb-5 px-5 m-5">           
+            <h1 class ="welcome-title">Name That Flag!</h1>
+              <button class="start">Start</button>
+              <p class="question-count pt-3">10 questions</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  const startButton = document.querySelector(".start");
+  startButton.addEventListener("click", startGame);
+}
 
 async function startGame() {
   const currentQuestionData = testObj[currentQuestion];
@@ -183,5 +215,4 @@ function checkCorrectAnswer(button, buttons) {
   }, nextQuestionDelay);
 }
 
-const startButton = document.querySelector(".start");
-startButton.addEventListener("click", startGame);
+document.addEventListener("DOMContentLoaded", getCountries);
