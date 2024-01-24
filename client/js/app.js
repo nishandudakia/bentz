@@ -3,11 +3,11 @@ let state = {
   score: "",
   currentQuestion: 0,
   correctAnswer: null,
-  isGamePlaying: false,
+  countdown: 10,
 };
 
 // destructed object
-let { currentQuestion, correctAnswer, score } = state;
+let { currentQuestion, correctAnswer, score, countdown } = state;
 
 // selectors
 const wrapper = document.querySelector(".wrapper");
@@ -116,9 +116,19 @@ async function startGame() {
   wrapper.innerHTML = `
   <nav class="container d-flex justify-content-between align-items-center mt-3">
     <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
-    <p class="custom-primary fs-5 mt-3">${currentQuestion + 1} of ${
+    <div class="d-flex items-center">
+    <div id="countdown">
+    <div id="countdown-number"></div>
+    <svg>
+      <circle r="18" cx="20" cy="20"></circle>
+    </svg>
+  </div>
+    <p class="custom-primary fs-5 mt-1">${currentQuestion + 1} of ${
     testObj.length
-  }</p>
+  }
+  </p>
+  </div>
+   
   </nav>
 
   <section class="mt-5 container d-flex flex-column justify-content-center align-items-center">
@@ -141,6 +151,28 @@ async function startGame() {
   buttons.forEach((button) => {
     button.addEventListener("click", () => checkCorrectAnswer(button, buttons));
   });
+
+  // Set up the countdown timer
+  // let countdownTimer = setInterval(() => {
+  //   countdown--;
+
+  //   if (countdown <= 0) {
+  //     clearInterval(countdownTimer);
+  //     setTimeout(() => {
+  //       currentQuestion++; // Move to the next question
+
+  //       if (currentQuestion < testObj.length) {
+  //         // Reset countdown for the new question
+  //         countdown = 10;
+  //         startGame(); // Display the next question
+  //       } else {
+  //         endGame(); // If there are no more questions, end the game
+  //       }
+  //     }, 1000); // 1-second delay before moving to the next question
+  //   } else {
+  //     document.getElementById("countdown-number").textContent = countdown;
+  //   }
+  // }, 1000);
 }
 
 // Function to pick a random country
