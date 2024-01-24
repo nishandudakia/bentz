@@ -1,6 +1,6 @@
 // state
 let state = {
-  score: "",
+  score: 0,
   currentQuestion: 0,
   correctAnswer: null,
   isGameFinished: false,
@@ -142,7 +142,12 @@ function checkCorrectAnswer(button, buttons) {
   
     <section class="mt-5 container d-flex flex-column align-items-center position-relative">
 
-    <img src= 'assets/Star.png' style="width: 625px;" />
+    <img src='assets/Star.png' style="width: 625px;" />
+
+    <!-- Add text overlay with inline styles -->
+    <div class="custom-primary" style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); font-size: 128px; text-align: center;">
+      ${score}/10
+    </div>
 
     <div class=" d-flex flex-row justify-content-evenly mt-4 " style="width: 100%;">
     <div class="col-4">
@@ -177,7 +182,7 @@ function checkCorrectAnswer(button, buttons) {
 
     if (currentQuestion < 9){
       currentQuestion++;
-      endGame(); // call startGame to display the next question
+      startGame(); // call startGame to display the next question
     }
     else{
       endGame()
