@@ -4,10 +4,11 @@ let state = {
   currentQuestion: 0,
   correctAnswer: null,
   countdown: 10,
+  isSound: true,
 };
 
 // destructed object
-let { currentQuestion, correctAnswer, score, countdown } = state;
+let { currentQuestion, correctAnswer, score, countdown, isSound } = state;
 
 // selectors
 const wrapper = document.querySelector(".wrapper");
@@ -87,6 +88,7 @@ function getCountries() {
       alt="logo of a flag with text saying name that flag"
       class="logo logo-welcome mt-3"
     />
+   
     </nav>
     <div class="container d-flex justify-content-center">
       <div
@@ -122,6 +124,7 @@ async function startGame() {
     // <svg>
     //   <circle r="18" cx="20" cy="20"></circle>
     // </svg>
+     <i class="fa-solid fa-volume-high volume"></i>
   </div>
     <p class="custom-primary fs-5 mt-1">${currentQuestion + 1} of ${
     testObj.length
@@ -184,14 +187,18 @@ function pickRandomCountry(countries) {
 // function to check if button clicked is the correct answer
 function checkCorrectAnswer(button, buttons) {
   if (button.textContent === correctAnswer) {
+    if (isSound) {
+      let audio = new Audio("./assets/correct.mp3");
+      audio.play();
+    }
     button.classList.add("custom-bg-green");
-    let audio = new Audio("./assets/correct.mp3");
-    audio.play();
     score++;
   } else {
+    if (isSound) {
+      let wrongaudio = new Audio("./assets/wronganswer.mp3");
+      wrongaudio.play();
+    }
     button.classList.add("custom-bg-red");
-    let wrongaudio = new Audio("./assets/wronganswer.mp3");
-    wrongaudio.play();
     // show current answer
     buttons.forEach((btn) => {
       if (btn.textContent === correctAnswer) {
@@ -216,16 +223,20 @@ function checkCorrectAnswer(button, buttons) {
     </div>
       <button class="play-again-btn">Play Again</button> 
     </section>`;
-  
-     const playAgainButton = document.querySelector(".play-again-btn");
-  
+
+    if (isSound) {
+      let endAudio = new Audio("./assets/tada.mp3");
+      endAudio.play();
+    }
+    const playAgainButton = document.querySelector(".play-again-btn");
+
     //   add event listener to all buttons
-      playAgainButton.addEventListener("click", ()=>{
-        currentQuestion = 0
-        score = 0
-        correctAnswer = null
-        startGame()
-});
+    playAgainButton.addEventListener("click", () => {
+      currentQuestion = 0;
+      score = 0;
+      correctAnswer = null;
+      startGame();
+    });
   }
 
   //   clear state
@@ -239,9 +250,8 @@ function checkCorrectAnswer(button, buttons) {
     if (currentQuestion < 9) {
       currentQuestion++;
       startGame(); // call startGame to display the next question
-    }
-    else{
-      endGame()
+    } else {
+      endGame();
     }
   }, nextQuestionDelay);
 }

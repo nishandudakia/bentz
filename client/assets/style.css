@@ -1,4 +1,4 @@
-{
+ {
   font-family: "Nunito Sans", sans-serif;
 }
 
@@ -8,6 +8,10 @@ body {
 
 .logo {
   width: 200px;
+}
+
+.volume {
+  color: red;
 }
 
 .welcome-title {
@@ -38,17 +42,17 @@ body {
 }
 
 .play-again-btn {
-    border-radius: 20px;
-    font-size: 30px;
-    background: white;
-    border: none;
-    padding: 1rem 2rem;
-    width: 625px;
-    color: #25254c;
-    margin-bottom: 2rem;
-    margin-top: 5rem;
-    font-weight: bold;
-  }
+  border-radius: 20px;
+  font-size: 30px;
+  background: white;
+  border: none;
+  padding: 1rem 2rem;
+  width: 625px;
+  color: #25254c;
+  margin-bottom: 2rem;
+  margin-top: 5rem;
+  font-weight: bold;
+}
 
 .custom-bg-green {
   background: #6bcd57;
