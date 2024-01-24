@@ -3,7 +3,6 @@ let state = {
   score: 0,
   currentQuestion: 0,
   correctAnswer: null,
-  isGameFinished: false,
 };
 
 // destructed object
@@ -134,7 +133,6 @@ function checkCorrectAnswer(button, buttons) {
   }
 
   async function endGame() {
-  
     wrapper.innerHTML = `
     <nav class="container d-flex justify-content-between align-items-center mt-3">
       <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
@@ -170,15 +168,13 @@ function checkCorrectAnswer(button, buttons) {
 
   //   go to next question after 2 seconds
   setTimeout(() => {
-
-    if (currentQuestion < 9){
+    if (currentQuestion < 9) {
       currentQuestion++;
       startGame(); // call startGame to display the next question
     }
     else{
       endGame()
     }
-
   }, nextQuestionDelay);
 }
 
