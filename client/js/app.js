@@ -178,4 +178,5 @@ function checkCorrectAnswer(button, buttons) {
   }, nextQuestionDelay);
 }
 
-startGame();
+const startButton = document.querySelector(".start");
+startButton.addEventListener("click", startGame);
