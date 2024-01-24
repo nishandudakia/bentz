@@ -118,14 +118,9 @@ async function startGame() {
   wrapper.innerHTML = `
   <nav class="container d-flex justify-content-between align-items-center mt-3">
     <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
-    <div class="d-flex items-center">
-    // <div id="countdown">
-    // <div id="countdown-number"></div>
-    // <svg>
-    //   <circle r="18" cx="20" cy="20"></circle>
-    // </svg>
-     <i class="fa-solid fa-volume-high volume"></i>
-  </div>
+     
+    <div class="d-flex items-center justify-content-evenly" style = "width: 250px">
+    <i class="fa-solid fa-volume-high volume"></i>
     <p class="custom-primary fs-5 mt-1">${currentQuestion + 1} of ${
     testObj.length
   }
