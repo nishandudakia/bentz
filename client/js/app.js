@@ -117,11 +117,12 @@ async function startGame() {
   <nav class="container d-flex justify-content-between align-items-center mt-3">
     <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
     <div class="d-flex items-center">
-    // <div id="countdown">
-    // <div id="countdown-number"></div>
-    // <svg>
-    //   <circle r="18" cx="20" cy="20"></circle>
-    // </svg>
+    <div id="countdown">
+    <div id="countdown-number"></div>
+    <svg>
+      <circle r="18" cx="20" cy="20"></circle>
+    </svg>
+  
   </div>
     <p class="custom-primary fs-5 mt-1">${currentQuestion + 1} of ${
     testObj.length
@@ -153,26 +154,26 @@ async function startGame() {
   });
 
   // Set up the countdown timer
-  // let countdownTimer = setInterval(() => {
-  //   countdown--;
+  let countdownTimer = setInterval(() => {
+    countdown--;
 
-  //   if (countdown <= 0) {
-  //     clearInterval(countdownTimer);
-  //     setTimeout(() => {
-  //       currentQuestion++; // Move to the next question
+    if (countdown <= 0) {
+      clearInterval(countdownTimer);
+      setTimeout(() => {
+        currentQuestion++; // Move to the next question
 
-  //       if (currentQuestion < testObj.length) {
-  //         // Reset countdown for the new question
-  //         countdown = 10;
-  //         startGame(); // Display the next question
-  //       } else {
-  //         endGame(); // If there are no more questions, end the game
-  //       }
-  //     }, 1000); // 1-second delay before moving to the next question
-  //   } else {
-  //     document.getElementById("countdown-number").textContent = countdown;
-  //   }
-  // }, 1000);
+        if (currentQuestion < testObj.length) {
+          // Reset countdown for the new question
+          countdown = 10;
+          startGame(); // Display the next question
+        } else {
+          endGame(); // If there are no more questions, end the game
+        }
+      }, 1000); // 1-second delay before moving to the next question
+    } else {
+      document.getElementById("countdown-number").textContent = countdown;
+    }
+  }, 1000);
 }
 
 // Function to pick a random country
@@ -216,16 +217,16 @@ function checkCorrectAnswer(button, buttons) {
     </div>
       <button class="play-again-btn">Play Again</button> 
     </section>`;
-  
-     const playAgainButton = document.querySelector(".play-again-btn");
-  
+
+    const playAgainButton = document.querySelector(".play-again-btn");
+
     //   add event listener to all buttons
-      playAgainButton.addEventListener("click", ()=>{
-        currentQuestion = 0
-        score = 0
-        correctAnswer = null
-        startGame()
-});
+    playAgainButton.addEventListener("click", () => {
+      currentQuestion = 0;
+      score = 0;
+      correctAnswer = null;
+      startGame();
+    });
   }
 
   //   clear state
@@ -239,9 +240,8 @@ function checkCorrectAnswer(button, buttons) {
     if (currentQuestion < 9) {
       currentQuestion++;
       startGame(); // call startGame to display the next question
-    }
-    else{
-      endGame()
+    } else {
+      endGame();
     }
   }, nextQuestionDelay);
 }
