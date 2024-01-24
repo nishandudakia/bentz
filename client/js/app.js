@@ -1,6 +1,6 @@
 // state
 let state = {
-  score: "",
+  score: 0,
   currentQuestion: 0,
   correctAnswer: null,
 };
@@ -140,30 +140,24 @@ function checkCorrectAnswer(button, buttons) {
   
     <section class="mt-5 container d-flex flex-column align-items-center position-relative">
 
-    <img src= 'assets/Star.png' style="width: 625px;" />
+    <img src='assets/Star.png' style="width: 625px;" />
 
-    <div class=" d-flex flex-row justify-content-evenly mt-4 w-100">
-    <div class="col-4">
-      <button class="custom-btn">Play Again</button>
+    <!-- Add text overlay with inline styles -->
+    <div class="custom-primary" style="position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%); font-size: 128px; text-align: center;">
+      ${score}/10
     </div>
-    <div class="col-4">
-      <button class="custom-btn">Main Menu</button>
-    </div>
-    </div>
- 
-
-
-
+      <button class="play-again-btn">Play Again</button> 
     </section>`;
-
-    const buttons = document.querySelectorAll(".custom-btn");
-
+  
+     const playAgainButton = document.querySelector(".play-again-btn");
+  
     //   add event listener to all buttons
-    buttons.forEach((button) => {
-      button.addEventListener("click", () =>
-        checkCorrectAnswer(button, buttons)
-      );
-    });
+      playAgainButton.addEventListener("click", ()=>{
+        currentQuestion = 0
+        score = 0
+        correctAnswer = null
+        startGame()
+});
   }
 
   //   clear state
@@ -177,8 +171,9 @@ function checkCorrectAnswer(button, buttons) {
     if (currentQuestion < 9) {
       currentQuestion++;
       startGame(); // call startGame to display the next question
-    } else {
-      endGame();
+    }
+    else{
+      endGame()
     }
   }, nextQuestionDelay);
 }

@@ -1,4 +1,4 @@
-* {
+{
   font-family: "Nunito Sans", sans-serif;
 }
 
@@ -36,6 +36,19 @@ body {
   margin-bottom: 2rem;
   font-weight: bold;
 }
+
+.play-again-btn {
+    border-radius: 20px;
+    font-size: 30px;
+    background: white;
+    border: none;
+    padding: 1rem 2rem;
+    width: 625px;
+    color: #25254c;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+    font-weight: bold;
+  }
 
 .custom-bg-green {
   background: #6bcd57;
