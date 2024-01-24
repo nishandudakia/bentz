@@ -150,6 +150,9 @@ async function startGame() {
     button.addEventListener("click", () => checkCorrectAnswer(button, buttons));
   });
 
+  const volumeButton = document.querySelector(".volume");
+  volumeButton.addEventListener("click", () => toggleVolume());
+
   // Set up the countdown timer
   // let countdownTimer = setInterval(() => {
   //   countdown--;
@@ -172,6 +175,10 @@ async function startGame() {
   //   }
   // }, 1000);
 }
+
+const toggleVolume = () => {
+  isSound = !isSound;
+};
 
 // Function to pick a random country
 function pickRandomCountry(countries) {

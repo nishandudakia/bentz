@@ -13,6 +13,7 @@ body {
 .volume {
   font-size: 26px;
   margin-top: 5px;
+  cursor: pointer;
 }
 
 .welcome-title {
