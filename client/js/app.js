@@ -145,23 +145,21 @@ function checkCorrectAnswer(button, buttons) {
     <img src='assets/Star.png' style="width: 625px;" />
 
     <!-- Add text overlay with inline styles -->
-    <div class="custom-primary" style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); font-size: 128px; text-align: center;">
+    <div class="custom-primary" style="position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%); font-size: 128px; text-align: center;">
       ${score}/10
     </div>
-
-    <div class=" d-flex flex-row justify-content-center mt-5 " style="width: 625px;">
-      <button class="play-again-btn">Play Again</button>
-    </div>
- 
-
-
-
+      <button class="play-again-btn">Play Again</button> 
     </section>`;
   
-    const playAgainButtons = document.querySelector(".play-again-btn");
+     const playAgainButton = document.querySelector(".play-again-btn");
   
     //   add event listener to all buttons
-      button.addEventListener("click",);
+      playAgainButton.addEventListener("click", ()=>{
+        currentQuestion = 0
+        score = 0
+        correctAnswer = null
+        startGame()
+});
   }
 
   //   clear state
