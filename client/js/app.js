@@ -121,9 +121,13 @@ function pickRandomCountry(countries) {
 function checkCorrectAnswer(button, buttons) {
   if (button.textContent === correctAnswer) {
     button.classList.add("custom-bg-green");
+    let audio = new Audio("./assets/correct.mp3");
+    audio.play();
     score++;
   } else {
     button.classList.add("custom-bg-red");
+    let wrongaudio = new Audio("./assets/wronganswer.mp3");
+    wrongaudio.play();
     // show current answer
     buttons.forEach((btn) => {
       if (btn.textContent === correctAnswer) {
