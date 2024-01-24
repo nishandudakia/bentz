@@ -149,13 +149,8 @@ function checkCorrectAnswer(button, buttons) {
       ${score}/10
     </div>
 
-    <div class=" d-flex flex-row justify-content-evenly mt-4 " style="width: 100%;">
-    <div class="col-4">
-      <button class="custom-btn">Play Again</button>
-    </div>
-    <div class="col-4">
-      <button class="custom-btn">Main Menu</button>
-    </div>
+    <div class=" d-flex flex-row justify-content-center mt-5 " style="width: 625px;">
+      <button class="play-again-btn">Play Again</button>
     </div>
  
 
@@ -163,12 +158,10 @@ function checkCorrectAnswer(button, buttons) {
 
     </section>`;
   
-    const buttons = document.querySelectorAll(".custom-btn");
+    const playAgainButtons = document.querySelector(".play-again-btn");
   
     //   add event listener to all buttons
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => checkCorrectAnswer(button, buttons));
-    });
+      button.addEventListener("click",);
   }
 
   //   clear state
