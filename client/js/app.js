@@ -152,32 +152,18 @@ async function startGame() {
 
   const volumeButton = document.querySelector(".volume");
   volumeButton.addEventListener("click", () => toggleVolume());
-
-  // Set up the countdown timer
-  // let countdownTimer = setInterval(() => {
-  //   countdown--;
-
-  //   if (countdown <= 0) {
-  //     clearInterval(countdownTimer);
-  //     setTimeout(() => {
-  //       currentQuestion++; // Move to the next question
-
-  //       if (currentQuestion < testObj.length) {
-  //         // Reset countdown for the new question
-  //         countdown = 10;
-  //         startGame(); // Display the next question
-  //       } else {
-  //         endGame(); // If there are no more questions, end the game
-  //       }
-  //     }, 1000); // 1-second delay before moving to the next question
-  //   } else {
-  //     document.getElementById("countdown-number").textContent = countdown;
-  //   }
-  // }, 1000);
 }
 
 const toggleVolume = () => {
   isSound = !isSound;
+
+  if (volumeButton.classList.contains("volume")) {
+    volumeButton.classList.remove("volume");
+    volumeButton.classList.add("volume-off");
+  } else {
+    volumeButton.classList.remove("volume-off");
+    volumeButton.classList.add("volume");
+  }
 };
 
 // Function to pick a random country
