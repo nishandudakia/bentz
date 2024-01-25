@@ -191,6 +191,7 @@ function checkCorrectAnswer(button, buttons) {
       currentQuestion = 0;
       score = 0;
       correctAnswer = null;
+      getCountries();
       startGame();
     });
   }
