@@ -135,7 +135,7 @@ async function startGame() {
    
   </nav>
 
-  <section class="mt-5 container d-flex flex-column justify-content-center align-items-center">
+  <section class="mt-5 container d-flex flex-column justify-content-center align-items-center fade-in">
     <img src=${randomCountry.flag} class="rounded custom-img" />
     <div class="mt-5 row">
       ${currentQuestionData
@@ -156,10 +156,8 @@ async function startGame() {
     button.addEventListener("click", () => checkCorrectAnswer(button, buttons));
   });
 
-
   volumeButton = document.querySelector(".volume");
   volumeButton.addEventListener("click", () => toggleVolume());
-
 }
 
 const toggleVolume = () => {

@@ -1,4 +1,3 @@
-
 * {
   font-family: "Nunito Sans", sans-serif;
 }
@@ -123,4 +122,22 @@ body {
   font-weight: 700;
   width: 190px;
   height: 27px;
+}
+
+.volume {
+  color: #25254c;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
