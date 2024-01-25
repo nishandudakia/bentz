@@ -10,6 +10,19 @@ body {
   width: 200px;
 }
 
+.volume {
+  font-size: 26px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.volume-off {
+  font-size: 26px;
+  margin-top: 5px;
+  cursor: pointer;
+  color: red;
+}
+
 .welcome-title {
   font-size: 60px;
   font-weight: bold;
@@ -34,6 +47,19 @@ body {
   color: #25254c;
   width: 100%;
   margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.play-again-btn {
+  border-radius: 20px;
+  font-size: 30px;
+  background: white;
+  border: none;
+  padding: 1rem 2rem;
+  width: 625px;
+  color: #25254c;
+  margin-bottom: 2rem;
+  margin-top: 5rem;
   font-weight: bold;
 }
 
@@ -96,4 +122,22 @@ body {
   font-weight: 700;
   width: 190px;
   height: 27px;
+}
+
+.volume {
+  color: #25254c;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
