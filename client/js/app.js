@@ -120,11 +120,13 @@ async function startGame() {
   wrapper.innerHTML = `
   <nav class="container d-flex justify-content-between align-items-center mt-3">
     <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
+
      
     <div class="d-flex items-center justify-content-evenly" style = "width: 250px">
     <i class="fa-solid volume ${
       isSound ? "fa-volume-high" : "fa-volume-xmark"
     }"></i>
+
     <p class="custom-primary fs-5 mt-1">${currentQuestion + 1} of ${
     testObj.length
   }
@@ -154,8 +156,10 @@ async function startGame() {
     button.addEventListener("click", () => checkCorrectAnswer(button, buttons));
   });
 
+
   volumeButton = document.querySelector(".volume");
   volumeButton.addEventListener("click", () => toggleVolume());
+
 }
 
 const toggleVolume = () => {
@@ -220,6 +224,7 @@ function checkCorrectAnswer(button, buttons) {
       let endAudio = new Audio("./assets/tada.mp3");
       endAudio.play();
     }
+
     const playAgainButton = document.querySelector(".play-again-btn");
 
     //   add event listener to all buttons
