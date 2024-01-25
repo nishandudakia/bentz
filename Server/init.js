@@ -8,7 +8,7 @@ function selectCountries(shortlist, all) {
         name: selected["name"]["common"],
       };
 
-      if (!shortlist.includes(country)) {
+      if (shortlist.filter(c => c["name"] === country["name"]).length === 0) {
         shortlist.push(country);
       }
     }

@@ -32,51 +32,10 @@ describe("selectCountries", () => {
     expect(
       selectCountries(
         [],
-        [
-          {
-            flags: {
-              png: "",
-              svg: "",
-              alt: "",
-            },
-            name: {
-              common: "",
-              official: "",
-              nativeName: {
-                crs: {
-                  official: "",
-                  common: "",
-                },
-                eng: {
-                  official: "",
-                  common: "",
-                },
-                fra: {
-                  official: "",
-                  common: "",
-                },
-              },
-            },
-          },
-          {
-            flags: {
-              png: "https://flagcdn.com/w320/tf.png",
-              svg: "https://flagcdn.com/tf.svg",
-              alt: "",
-            },
-            name: {
-              common: "French Southern and Antarctic Lands",
-              official: "Territory of the French Southern and Antarctic Lands",
-              nativeName: {
-                fra: {
-                  official:
-                    "Territoire des Terres australes et antarctiques françaises",
-                  common: "Terres australes et antarctiques françaises",
-                },
-              },
-            },
-          },
-        ]
+        testInputArray.concat(Array(40).fill({
+          flags: { svg: "" }, 
+          name: { common: "" }
+        }))
       )
     ).toHaveLength(40);
   });
