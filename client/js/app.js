@@ -10,6 +10,8 @@ let state = {
 // destructed object
 let { currentQuestion, correctAnswer, score, countdown, isSound } = state;
 
+let volumeButton; // Declare volumeButton as a global variable
+
 // selectors
 const wrapper = document.querySelector(".wrapper");
 
@@ -150,7 +152,7 @@ async function startGame() {
     button.addEventListener("click", () => checkCorrectAnswer(button, buttons));
   });
 
-  const volumeButton = document.querySelector(".volume");
+  volumeButton = document.querySelector(".volume");
   volumeButton.addEventListener("click", () => toggleVolume());
 }
 
