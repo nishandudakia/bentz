@@ -122,7 +122,9 @@ async function startGame() {
     <img src="./assets/logo.png" alt="logo of a flag with text saying name that flag" class="logo" />
      
     <div class="d-flex items-center justify-content-evenly" style = "width: 250px">
-    <i class="fa-solid fa-volume-high volume"></i>
+    <i class="fa-solid volume ${
+      isSound ? "fa-volume-high" : "fa-volume-xmark"
+    }"></i>
     <p class="custom-primary fs-5 mt-1">${currentQuestion + 1} of ${
     testObj.length
   }
@@ -159,12 +161,12 @@ async function startGame() {
 const toggleVolume = () => {
   isSound = !isSound;
 
-  if (volumeButton.classList.contains("volume")) {
-    volumeButton.classList.remove("volume");
-    volumeButton.classList.add("volume-off");
+  if (volumeButton.classList.contains("fa-volume-high")) {
+    volumeButton.classList.remove("fa-volume-high");
+    volumeButton.classList.add("fa-volume-xmark");
   } else {
-    volumeButton.classList.remove("volume-off");
-    volumeButton.classList.add("volume");
+    volumeButton.classList.remove("fa-volume-xmark");
+    volumeButton.classList.add("fa-volume-high");
   }
 };
 
