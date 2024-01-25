@@ -79,6 +79,8 @@ const testObj = [
 ];
 
 function getCountries() {
+
+  
   // make request
 
   // load welcome page
